@@ -1,0 +1,49 @@
+{
+  "FACTORY_FALLOUT_DROPS": {
+    "input_file_extension": ".xlsx",
+    "file_pattern": "^FACTORY_FALLOUT_DROPS_\\d{8}\\.xlsx$",
+    "sheet_name": "Sheet1",
+    "required_columns": [
+      "Process_Breakdown",
+      "Delivery_Date",
+      "Delivery",
+      "WERKS",
+      "Item",
+      "EXTRACTION_DATE"
+    ],
+    "notnull_columns": [
+      "Process_Breakdown",
+      "Delivery_Date",
+      "Delivery"
+    ],
+    "date_columns": [
+      "Delivery_Date",
+      "EXTRACTION_DATE"
+    ],
+    "primary_key_columns": [
+      "WERKS",
+      "Item",
+      "Delivery_Date"
+    ],
+    "watermark_column": "EXTRACTION_DATE",
+    "hash_columns": [
+      "WERKS",
+      "Item",
+      "Delivery_Date",
+      "Delivery"
+    ],
+    "dq_checks": {
+      "remove_invisible_spaces": true,
+      "trim_spaces": true,
+      "row_duplicate_check": true,
+      "primary_key_uniqueness": true,
+      "watermark_validation": true,
+      "hash_validation": true,
+      "replay_detection": true
+    },
+    "incremental_load": {
+      "enabled": true,
+      "mode": "SCD2"
+    }
+  }
+}
